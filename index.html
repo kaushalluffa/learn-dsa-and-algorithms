@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA Mastery Hub — NeetCode 150 Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e4e4ef;
+  --text-muted: #8888a0;
+  --accent: #6366f1;
+  --accent-glow: rgba(99,102,241,0.15);
+  --easy: #22c55e;
+  --easy-bg: rgba(34,197,94,0.08);
+  --medium: #f59e0b;
+  --medium-bg: rgba(245,158,11,0.08);
+  --hard: #ef4444;
+  --hard-bg: rgba(239,68,68,0.08);
+  --learn: #06b6d4;
+  --learn-bg: rgba(6,182,212,0.08);
+  --realworld: #a855f7;
+  --realworld-bg: rgba(168,85,247,0.08);
+  --radius: 10px;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+  --display: 'Playfair Display', serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a:hover { color: #818cf8; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  position: relative;
+}
+.hero h1 span { color: var(--accent); }
+.hero .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 20px auto 0;
+  position: relative;
+}
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.stat { text-align: center; }
+.stat .num {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+}
+.stat .label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.stat.easy .num { color: var(--easy); }
+.stat.medium .num { color: var(--medium); }
+.stat.hard .num { color: var(--hard); }
+
+/* NAV */
+.toc {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.toc::-webkit-scrollbar { display: none; }
+.toc-inner {
+  display: flex;
+  gap: 6px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+.toc a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.toc a:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-glow);
+}
+
+/* MAIN */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+}
+
+/* SECTION */
+.section {
+  margin-bottom: 64px;
+  animation: fadeUp .5s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(99,102,241,0.3);
+}
+.section h2 {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  max-width: 900px;
+}
+
+/* RESOURCES ROW */
+.resources-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) { .resources-row { grid-template-columns: 1fr; } }
+
+.resource-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--surface);
+  transition: border-color .2s;
+}
+.resource-card:hover { border-color: var(--accent); }
+.resource-card h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.resource-card.learn h3 { color: var(--learn); }
+.resource-card.realworld h3 { color: var(--realworld); }
+.resource-card ul { list-style: none; }
+.resource-card li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.88rem;
+}
+.resource-card li:last-child { border: none; }
+.resource-card li a { display: flex; align-items: center; gap: 8px; }
+.resource-card .tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.resource-card.learn .tag { background: var(--learn-bg); color: var(--learn); }
+.resource-card.realworld .tag { background: var(--realworld-bg); color: var(--realworld); }
+
+/* TABLE */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+thead {
+  background: var(--surface2);
+  position: sticky;
+  top: 0;
+}
+th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: top;
+}
+tr:hover td { background: rgba(99,102,241,0.03); }
+tr:last-child td { border-bottom: none; }
+
+.diff {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.diff.easy { background: var(--easy-bg); color: var(--easy); }
+.diff.medium { background: var(--medium-bg); color: var(--medium); }
+.diff.hard { background: var(--hard-bg); color: var(--hard); }
+
+.problem-link {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nc-link {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+.nc-link:hover { color: var(--accent); }
+
+.time-est {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pattern-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+/* PROGRESS CHECKBOX */
+.check-cell { text-align: center; }
+.check-cell input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* HOW TO USE */
+.howto {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 48px;
+}
+.howto h2 {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+.howto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.howto-item {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 20px;
+}
+.howto-item .step {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.howto-item h3 { font-size: 1rem; margin-bottom: 6px; }
+.howto-item p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* GLOBAL PROGRESS BAR */
+.progress-bar-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.progress-bar-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.progress-track {
+  flex: 1;
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #818cf8);
+  border-radius: 999px;
+  width: 0%;
+  transition: width .4s ease;
+}
+.progress-text {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>DSA <span>Mastery</span> Hub</h1>
+  <p class="subtitle">NeetCode 150 Roadmap — every problem sorted by difficulty, with learning resources and real-world examples so you <em>actually remember</em> what you learn. Built for JavaScript learners.</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="num">150</div><div class="label">Problems</div></div>
+    <div class="stat"><div class="num">18</div><div class="label">Categories</div></div>
+    <div class="stat easy"><div class="num">28</div><div class="label">Easy</div></div>
+    <div class="stat medium"><div class="num">101</div><div class="label">Medium</div></div>
+    <div class="stat hard"><div class="num">21</div><div class="label">Hard</div></div>
+  </div>
+</div>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#arrays">Arrays & Hashing</a>
+    <a href="#twopointers">Two Pointers</a>
+    <a href="#sliding">Sliding Window</a>
+    <a href="#stack">Stack</a>
+    <a href="#bsearch">Binary Search</a>
+    <a href="#linkedlist">Linked List</a>
+    <a href="#trees">Trees</a>
+    <a href="#heap">Heap</a>
+    <a href="#backtracking">Backtracking</a>
+    <a href="#tries">Tries</a>
+    <a href="#graphs">Graphs</a>
+    <a href="#advgraphs">Adv. Graphs</a>
+    <a href="#dp1d">1-D DP</a>
+    <a href="#dp2d">2-D DP</a>
+    <a href="#greedy">Greedy</a>
+    <a href="#intervals">Intervals</a>
+    <a href="#math">Math & Geometry</a>
+    <a href="#bits">Bit Manipulation</a>
+  </div>
+</nav>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar-container">
+    <span class="progress-text" id="progressText">0 / 150 completed</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- HOW TO USE -->
+<div class="howto">
+  <h2>How to Use This Page</h2>
+  <div class="howto-grid">
+    <div class="howto-item">
+      <div class="step">Step 1</div>
+      <h3>Learn the Data Structure</h3>
+      <p>Before touching any problem, use the turquoise "Learn" resources to understand the data structure in JavaScript. Watch videos, read articles, code along.</p>
+    </div>
+    <div class="howto-item">
+      <div class="step">Step 2</div>
+      <h3>See It in Action</h3>
+      <p>Use the purple "Real-World" resources to see how the data structure is used in actual codebases, applications, and visual demos. This cements it in your memory.</p>
+    </div>
+    <div class="howto-item">
+      <div class="step">Step 3</div>
+      <h3>Solve Easy → Hard</h3>
+      <p>Problems are pre-sorted by difficulty. Start with Easy, build confidence, then progress. Click the NeetCode link under each problem for video solutions when stuck.</p>
+    </div>
+    <div class="howto-item">
+      <div class="step">Step 4</div>
+      <h3>Track Progress</h3>
+      <p>Check off problems as you complete them. Your progress is saved locally in your browser. The progress bar updates in real time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 1. ARRAYS & HASHING ==================== -->
+<div class="section" id="arrays">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Arrays & Hashing</h2>
+  </div>
+  <p class="section-desc">The foundation of everything. Arrays store ordered data; hash maps give O(1) lookups. Master these patterns first — frequency counting, grouping, and prefix operations show up everywhere.</p>
+
+  <div class="resources-row">
+    <div class="resource-card learn">
+      <h3>📘 Learn the Data Structure (JS)</h3>
+      <ul>
+        <li><a href="https://javascript.info/array"><span class="tag">Article</span> javascript.info — Arrays</a></li>
+        <li><a href="https://javascript.info/map-set"><span class="tag">Article</span> javascript.info — Map and Set</a></li>
+        <li><a href="https://www.youtube.com/watch?v=t2CEgPsws3U"><span class="tag">Video</span> Codevolution — JS Data Structures (Arrays & Objects)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=pU6aVIp9YDM"><span class="tag">Video</span> NeetCode — Arrays & Hashing (Beginner course)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><span class="tag">MDN</span> Map — MDN Web Docs</a></li>
+      </ul>
+    </div>
+    <div class="resource-card realworld">
+      <h3>🌍 Real-World Usage & Visual Examples</h3>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=RBSGKlAvoiM"><span class="tag">Visual</span> freeCodeCamp — Data Structures Easy to Advanced (Arrays)</a></li>
+        <li><a href="https://visualgo.net/en/array"><span class="tag">Interactive</span> VisuAlgo — Array Visualization</a></li>
+        <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/hash-table"><span class="tag">Code</span> JS Algorithms — Hash Table Implementation</a></li>
+        <li><a href="https://blog.sessionstack.com/how-javascript-works-under-the-hood-of-css-and-js-animations-and-how-to-optimize-their-performance-4ce3e8b72eab"><span class="tag">Real-World</span> Hash maps in caching, memoization, indexing</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead>
+      <tbody>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p1"></td><td>1</td><td><a class="problem-link" href="https://leetcode.com/problems/contains-duplicate/">Contains Duplicate</a><a class="nc-link" href="https://neetcode.io/problems/duplicate-integer">NeetCode Solution ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Set / Hash</span></td><td class="time-est">15m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p2"></td><td>2</td><td><a class="problem-link" href="https://leetcode.com/problems/valid-anagram/">Valid Anagram</a><a class="nc-link" href="https://neetcode.io/problems/is-anagram">NeetCode Solution ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Frequency Count</span></td><td class="time-est">15m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p3"></td><td>3</td><td><a class="problem-link" href="https://leetcode.com/problems/two-sum/">Two Sum</a><a class="nc-link" href="https://neetcode.io/problems/two-integer-sum">NeetCode Solution ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Hash Map</span></td><td class="time-est">15m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p4"></td><td>4</td><td><a class="problem-link" href="https://leetcode.com/problems/group-anagrams/">Group Anagrams</a><a class="nc-link" href="https://neetcode.io/problems/anagram-groups">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Hash Map / Sort</span></td><td class="time-est">25m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p5"></td><td>5</td><td><a class="problem-link" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K Frequent Elements</a><a class="nc-link" href="https://neetcode.io/problems/top-k-elements-in-list">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Bucket Sort</span></td><td class="time-est">25m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p6"></td><td>6</td><td><a class="problem-link" href="https://leetcode.com/problems/product-of-array-except-self/">Product of Array Except Self</a><a class="nc-link" href="https://neetcode.io/problems/products-of-array-discluding-self">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Prefix / Suffix</span></td><td class="time-est">30m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p7"></td><td>7</td><td><a class="problem-link" href="https://leetcode.com/problems/valid-sudoku/">Valid Sudoku</a><a class="nc-link" href="https://neetcode.io/problems/valid-sudoku">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Hash Set</span></td><td class="time-est">25m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p8"></td><td>8</td><td><a class="problem-link" href="https://leetcode.com/problems/encode-and-decode-strings/">Encode and Decode Strings</a><a class="nc-link" href="https://neetcode.io/problems/string-encode-and-decode">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">String Design</span></td><td class="time-est">25m</td></tr>
+        <tr><td class="check-cell"><input type="checkbox" data-id="p9"></td><td>9</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-consecutive-sequence/">Longest Consecutive Sequence</a><a class="nc-link" href="https://neetcode.io/problems/longest-consecutive-sequence">NeetCode Solution ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Hash Set</span></td><td class="time-est">30m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 2. TWO POINTERS ==================== -->
+<div class="section" id="twopointers">
+  <div class="section-header"><span class="section-num">02</span><h2>Two Pointers</h2></div>
+  <p class="section-desc">Use two indices moving toward each other (or in the same direction) to solve problems on sorted arrays and strings in O(n). The key insight: eliminating possibilities from both ends simultaneously.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=cQ1Oz4ckceM"><span class="tag">Video</span> NeetCode — Two Pointers Pattern</a></li>
+      <li><a href="https://www.geeksforgeeks.org/two-pointers-technique/"><span class="tag">Article</span> GeeksforGeeks — Two Pointers Technique</a></li>
+      <li><a href="https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/"><span class="tag">Course</span> LeetCode Learn — Two Pointer Technique</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://visualgo.net/en/sorting"><span class="tag">Visual</span> VisuAlgo — Sorting (uses two pointers in partition)</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/search"><span class="tag">Code</span> JS Algorithms — Search implementations using two pointers</a></li>
+      <li><a href="https://www.youtube.com/watch?v=A03oI0znAoc"><span class="tag">Real-World</span> Two pointers in DNA sequence matching, text diff tools</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p10"></td><td>10</td><td><a class="problem-link" href="https://leetcode.com/problems/valid-palindrome/">Valid Palindrome</a><a class="nc-link" href="https://neetcode.io/problems/is-palindrome">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Two Pointers</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p11"></td><td>11</td><td><a class="problem-link" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">Two Sum II</a><a class="nc-link" href="https://neetcode.io/problems/two-integer-sum-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Two Pointers</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p12"></td><td>12</td><td><a class="problem-link" href="https://leetcode.com/problems/3sum/">3Sum</a><a class="nc-link" href="https://neetcode.io/problems/three-integer-sum">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Sort + Two Ptr</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p13"></td><td>13</td><td><a class="problem-link" href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a><a class="nc-link" href="https://neetcode.io/problems/max-water-container">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Greedy Two Ptr</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p14"></td><td>14</td><td><a class="problem-link" href="https://leetcode.com/problems/trapping-rain-water/">Trapping Rain Water</a><a class="nc-link" href="https://neetcode.io/problems/trapping-rain-water">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Two Ptr / Stack</span></td><td class="time-est">35m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 3. SLIDING WINDOW ==================== -->
+<div class="section" id="sliding">
+  <div class="section-header"><span class="section-num">03</span><h2>Sliding Window</h2></div>
+  <p class="section-desc">Maintain a "window" of elements and slide it across the array. Used for substring/subarray problems. The trick: know when to expand vs shrink the window.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=MK-NZ4hN7rs"><span class="tag">Video</span> NeetCode — Sliding Window Pattern</a></li>
+      <li><a href="https://www.geeksforgeeks.org/window-sliding-technique/"><span class="tag">Article</span> GeeksforGeeks — Sliding Window Technique</a></li>
+      <li><a href="https://levelup.gitconnected.com/an-introduction-to-sliding-window-algorithms-5533c4fe1cc7"><span class="tag">Article</span> Sliding Window Algorithms — Introduction</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Sliding_window_protocol"><span class="tag">Real-World</span> TCP Sliding Window Protocol (networking)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=jMxuL4Xzi_A"><span class="tag">Visual</span> Sliding window in streaming analytics & rate limiting</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p15"></td><td>15</td><td><a class="problem-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">Best Time to Buy and Sell Stock</a><a class="nc-link" href="https://neetcode.io/problems/buy-and-sell-crypto">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Min tracking</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p16"></td><td>16</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">Longest Substring Without Repeating Characters</a><a class="nc-link" href="https://neetcode.io/problems/longest-substring-without-duplicates">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Dynamic Window</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p17"></td><td>17</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-repeating-character-replacement/">Longest Repeating Character Replacement</a><a class="nc-link" href="https://neetcode.io/problems/longest-repeating-substring-with-replacement">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Window + Freq</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p18"></td><td>18</td><td><a class="problem-link" href="https://leetcode.com/problems/permutation-in-string/">Permutation in String</a><a class="nc-link" href="https://neetcode.io/problems/permutation-string">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Fixed Window</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p19"></td><td>19</td><td><a class="problem-link" href="https://leetcode.com/problems/minimum-window-substring/">Minimum Window Substring</a><a class="nc-link" href="https://neetcode.io/problems/minimum-window-with-characters">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Shrinkable Window</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p20"></td><td>20</td><td><a class="problem-link" href="https://leetcode.com/problems/sliding-window-maximum/">Sliding Window Maximum</a><a class="nc-link" href="https://neetcode.io/problems/sliding-window-maximum">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Monotonic Deque</span></td><td class="time-est">35m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 4. STACK ==================== -->
+<div class="section" id="stack">
+  <div class="section-header"><span class="section-num">04</span><h2>Stack</h2></div>
+  <p class="section-desc">Last-In-First-Out (LIFO). Stacks track state you'll need to "unwind" — matching parentheses, monotonic sequences, undo operations. JavaScript arrays already work as stacks (push/pop).</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=wtynhUwS5hI"><span class="tag">Video</span> Traversy Media — JS Stack Implementation</a></li>
+      <li><a href="https://javascript.info/recursion#the-execution-context-and-stack"><span class="tag">Article</span> javascript.info — Call Stack</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/stack"><span class="tag">Code</span> JS Algorithms — Stack Implementation</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://developer.chrome.com/docs/devtools/javascript/"><span class="tag">Real-World</span> Browser Call Stack (DevTools debugger)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)#Applications_of_stacks"><span class="tag">Real-World</span> Undo/Redo, expression parsing, browser history</a></li>
+      <li><a href="https://visualgo.net/en/list"><span class="tag">Interactive</span> VisuAlgo — Stack Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p21"></td><td>21</td><td><a class="problem-link" href="https://leetcode.com/problems/valid-parentheses/">Valid Parentheses</a><a class="nc-link" href="https://neetcode.io/problems/validate-parentheses">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Matching</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p22"></td><td>22</td><td><a class="problem-link" href="https://leetcode.com/problems/min-stack/">Min Stack</a><a class="nc-link" href="https://neetcode.io/problems/minimum-stack">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Design</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p23"></td><td>23</td><td><a class="problem-link" href="https://leetcode.com/problems/evaluate-reverse-polish-notation/">Evaluate Reverse Polish Notation</a><a class="nc-link" href="https://neetcode.io/problems/evaluate-reverse-polish-notation">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Stack Eval</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p24"></td><td>24</td><td><a class="problem-link" href="https://leetcode.com/problems/generate-parentheses/">Generate Parentheses</a><a class="nc-link" href="https://neetcode.io/problems/generate-parentheses">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Backtrack + Stack</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p25"></td><td>25</td><td><a class="problem-link" href="https://leetcode.com/problems/daily-temperatures/">Daily Temperatures</a><a class="nc-link" href="https://neetcode.io/problems/daily-temperatures">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Monotonic Stack</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p26"></td><td>26</td><td><a class="problem-link" href="https://leetcode.com/problems/car-fleet/">Car Fleet</a><a class="nc-link" href="https://neetcode.io/problems/car-fleet">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Stack + Sort</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p27"></td><td>27</td><td><a class="problem-link" href="https://leetcode.com/problems/largest-rectangle-in-histogram/">Largest Rectangle in Histogram</a><a class="nc-link" href="https://neetcode.io/problems/largest-rectangle-in-histogram">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Monotonic Stack</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 5. BINARY SEARCH ==================== -->
+<div class="section" id="bsearch">
+  <div class="section-header"><span class="section-num">05</span><h2>Binary Search</h2></div>
+  <p class="section-desc">Halve the search space each step — O(log n). Works on sorted arrays and any monotonic condition. The real skill: recognizing when a problem can be framed as binary search on an answer.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=MFhxShGxHWc"><span class="tag">Video</span> NeetCode — Binary Search Beginner</a></li>
+      <li><a href="https://www.geeksforgeeks.org/binary-search-in-javascript/"><span class="tag">Article</span> GeeksforGeeks — Binary Search in JS</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/search/binary-search"><span class="tag">Code</span> JS Algorithms — Binary Search</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://visualgo.net/en/bst"><span class="tag">Interactive</span> VisuAlgo — Binary Search Tree</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Binary_search_algorithm#Applications"><span class="tag">Real-World</span> Database indexing, git bisect, spell-check</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p28"></td><td>28</td><td><a class="problem-link" href="https://leetcode.com/problems/binary-search/">Binary Search</a><a class="nc-link" href="https://neetcode.io/problems/binary-search">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Classic BS</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p29"></td><td>29</td><td><a class="problem-link" href="https://leetcode.com/problems/search-a-2d-matrix/">Search a 2D Matrix</a><a class="nc-link" href="https://neetcode.io/problems/search-2d-matrix">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">2D → 1D BS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p30"></td><td>30</td><td><a class="problem-link" href="https://leetcode.com/problems/koko-eating-bananas/">Koko Eating Bananas</a><a class="nc-link" href="https://neetcode.io/problems/eating-bananas">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">BS on Answer</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p31"></td><td>31</td><td><a class="problem-link" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">Find Min in Rotated Sorted Array</a><a class="nc-link" href="https://neetcode.io/problems/find-minimum-in-rotated-sorted-array">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Modified BS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p32"></td><td>32</td><td><a class="problem-link" href="https://leetcode.com/problems/search-in-rotated-sorted-array/">Search in Rotated Sorted Array</a><a class="nc-link" href="https://neetcode.io/problems/find-target-in-rotated-sorted-array">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Modified BS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p33"></td><td>33</td><td><a class="problem-link" href="https://leetcode.com/problems/time-based-key-value-store/">Time Based Key-Value Store</a><a class="nc-link" href="https://neetcode.io/problems/time-based-key-value-store">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Design + BS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p34"></td><td>34</td><td><a class="problem-link" href="https://leetcode.com/problems/median-of-two-sorted-arrays/">Median of Two Sorted Arrays</a><a class="nc-link" href="https://neetcode.io/problems/median-of-two-sorted-arrays">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Partition BS</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 6. LINKED LIST ==================== -->
+<div class="section" id="linkedlist">
+  <div class="section-header"><span class="section-num">06</span><h2>Linked List</h2></div>
+  <p class="section-desc">Nodes connected by pointers. No random access, but O(1) insert/delete. Key patterns: fast/slow pointers, dummy heads, reversing in-place.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=ZBatFl0svg0"><span class="tag">Video</span> Traversy Media — JS Linked List</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/linked-list"><span class="tag">Code</span> JS Algorithms — LinkedList class</a></li>
+      <li><a href="https://visualgo.net/en/list"><span class="tag">Interactive</span> VisuAlgo — Linked List</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Linked_list#Applications"><span class="tag">Real-World</span> Browser tabs, music playlists, undo history</a></li>
+      <li><a href="https://www.youtube.com/watch?v=njTh_OwMljA"><span class="tag">Visual</span> HackerRank — Linked Lists Animated</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p35"></td><td>35</td><td><a class="problem-link" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked List</a><a class="nc-link" href="https://neetcode.io/problems/reverse-a-linked-list">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Iterative Rev</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p36"></td><td>36</td><td><a class="problem-link" href="https://leetcode.com/problems/merge-two-sorted-lists/">Merge Two Sorted Lists</a><a class="nc-link" href="https://neetcode.io/problems/merge-two-sorted-linked-lists">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Dummy Head</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p37"></td><td>37</td><td><a class="problem-link" href="https://leetcode.com/problems/linked-list-cycle/">Linked List Cycle</a><a class="nc-link" href="https://neetcode.io/problems/linked-list-cycle-detection">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Fast/Slow Ptr</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p38"></td><td>38</td><td><a class="problem-link" href="https://leetcode.com/problems/reorder-list/">Reorder List</a><a class="nc-link" href="https://neetcode.io/problems/reorder-linked-list">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Split + Rev + Merge</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p39"></td><td>39</td><td><a class="problem-link" href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Remove Nth Node From End</a><a class="nc-link" href="https://neetcode.io/problems/remove-node-from-end-of-linked-list">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Two Ptr Gap</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p40"></td><td>40</td><td><a class="problem-link" href="https://leetcode.com/problems/copy-list-with-random-pointer/">Copy List with Random Pointer</a><a class="nc-link" href="https://neetcode.io/problems/copy-linked-list-with-random-pointer">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Hash Map</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p41"></td><td>41</td><td><a class="problem-link" href="https://leetcode.com/problems/add-two-numbers/">Add Two Numbers</a><a class="nc-link" href="https://neetcode.io/problems/add-two-numbers">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Carry Math</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p42"></td><td>42</td><td><a class="problem-link" href="https://leetcode.com/problems/find-the-duplicate-number/">Find the Duplicate Number</a><a class="nc-link" href="https://neetcode.io/problems/find-duplicate-integer">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Floyd's Cycle</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p43"></td><td>43</td><td><a class="problem-link" href="https://leetcode.com/problems/lru-cache/">LRU Cache</a><a class="nc-link" href="https://neetcode.io/problems/lru-cache">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DLL + Hash Map</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p44"></td><td>44</td><td><a class="problem-link" href="https://leetcode.com/problems/merge-k-sorted-lists/">Merge k Sorted Lists</a><a class="nc-link" href="https://neetcode.io/problems/merge-k-sorted-linked-lists">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Divide & Conquer</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p45"></td><td>45</td><td><a class="problem-link" href="https://leetcode.com/problems/reverse-nodes-in-k-group/">Reverse Nodes in k-Group</a><a class="nc-link" href="https://neetcode.io/problems/reverse-nodes-in-k-group">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">K-group Rev</span></td><td class="time-est">35m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 7. TREES ==================== -->
+<div class="section" id="trees">
+  <div class="section-header"><span class="section-num">07</span><h2>Trees</h2></div>
+  <p class="section-desc">Hierarchical data — parent/child relationships. Binary trees, BSTs, and traversals (DFS/BFS) are among the most tested topics. Think recursively: solve for root, then trust recursion for subtrees.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=fAAZixBzIAI"><span class="tag">Video</span> freeCodeCamp — Binary Trees in JS</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/tree"><span class="tag">Code</span> JS Algorithms — BST Implementation</a></li>
+      <li><a href="https://visualgo.net/en/bst"><span class="tag">Interactive</span> VisuAlgo — BST Operations</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction"><span class="tag">Real-World</span> The DOM is a tree! Every web page uses trees.</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree"><span class="tag">Real-World</span> AST — how compilers & linters parse your code</a></li>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/BST.html"><span class="tag">Interactive</span> USFCA — BST Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p46"></td><td>46</td><td><a class="problem-link" href="https://leetcode.com/problems/invert-binary-tree/">Invert Binary Tree</a><a class="nc-link" href="https://neetcode.io/problems/invert-a-binary-tree">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p47"></td><td>47</td><td><a class="problem-link" href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">Maximum Depth of Binary Tree</a><a class="nc-link" href="https://neetcode.io/problems/depth-of-binary-tree">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p48"></td><td>48</td><td><a class="problem-link" href="https://leetcode.com/problems/diameter-of-binary-tree/">Diameter of Binary Tree</a><a class="nc-link" href="https://neetcode.io/problems/binary-tree-diameter">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS + Global</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p49"></td><td>49</td><td><a class="problem-link" href="https://leetcode.com/problems/balanced-binary-tree/">Balanced Binary Tree</a><a class="nc-link" href="https://neetcode.io/problems/balanced-binary-tree">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS Height</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p50"></td><td>50</td><td><a class="problem-link" href="https://leetcode.com/problems/same-tree/">Same Tree</a><a class="nc-link" href="https://neetcode.io/problems/same-binary-tree">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS Compare</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p51"></td><td>51</td><td><a class="problem-link" href="https://leetcode.com/problems/subtree-of-another-tree/">Subtree of Another Tree</a><a class="nc-link" href="https://neetcode.io/problems/subtree-of-a-binary-tree">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DFS + DFS</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p52"></td><td>52</td><td><a class="problem-link" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/">LCA of BST</a><a class="nc-link" href="https://neetcode.io/problems/lowest-common-ancestor-in-binary-search-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">BST Property</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p53"></td><td>53</td><td><a class="problem-link" href="https://leetcode.com/problems/binary-tree-level-order-traversal/">Binary Tree Level Order Traversal</a><a class="nc-link" href="https://neetcode.io/problems/level-order-traversal-of-binary-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">BFS</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p54"></td><td>54</td><td><a class="problem-link" href="https://leetcode.com/problems/binary-tree-right-side-view/">Binary Tree Right Side View</a><a class="nc-link" href="https://neetcode.io/problems/binary-tree-right-side-view">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">BFS</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p55"></td><td>55</td><td><a class="problem-link" href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/">Count Good Nodes</a><a class="nc-link" href="https://neetcode.io/problems/count-good-nodes-in-binary-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DFS + Max</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p56"></td><td>56</td><td><a class="problem-link" href="https://leetcode.com/problems/validate-binary-search-tree/">Validate BST</a><a class="nc-link" href="https://neetcode.io/problems/valid-binary-search-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DFS + Range</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p57"></td><td>57</td><td><a class="problem-link" href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/">Kth Smallest in BST</a><a class="nc-link" href="https://neetcode.io/problems/kth-smallest-integer-in-bst">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Inorder</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p58"></td><td>58</td><td><a class="problem-link" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">Construct Tree from Preorder & Inorder</a><a class="nc-link" href="https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Recursive Build</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p59"></td><td>59</td><td><a class="problem-link" href="https://leetcode.com/problems/binary-tree-maximum-path-sum/">Binary Tree Max Path Sum</a><a class="nc-link" href="https://neetcode.io/problems/binary-tree-maximum-path-sum">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">DFS + Global Max</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p60"></td><td>60</td><td><a class="problem-link" href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/">Serialize & Deserialize Binary Tree</a><a class="nc-link" href="https://neetcode.io/problems/serialize-and-deserialize-binary-tree">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Preorder + Queue</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 8. HEAP ==================== -->
+<div class="section" id="heap">
+  <div class="section-header"><span class="section-num">08</span><h2>Heap / Priority Queue</h2></div>
+  <p class="section-desc">Efficiently get the min/max element. JS doesn't have a built-in heap — you'll implement one or use a sorted approach. Used for top-K, scheduling, and streaming median problems.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=t0Cq6tVNRBA"><span class="tag">Video</span> freeCodeCamp — Heaps, Heap Sort</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/heap"><span class="tag">Code</span> JS Algorithms — Min/Max Heap</a></li>
+      <li><a href="https://visualgo.net/en/heap"><span class="tag">Interactive</span> VisuAlgo — Binary Heap</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Priority_queue#Applications"><span class="tag">Real-World</span> OS task scheduling, Dijkstra's algorithm, event systems</a></li>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/Heap.html"><span class="tag">Interactive</span> USFCA — Heap Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p64"></td><td>61</td><td><a class="problem-link" href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">Kth Largest Element in a Stream</a><a class="nc-link" href="https://neetcode.io/problems/kth-largest-integer-in-a-stream">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Min Heap</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p65"></td><td>62</td><td><a class="problem-link" href="https://leetcode.com/problems/last-stone-weight/">Last Stone Weight</a><a class="nc-link" href="https://neetcode.io/problems/last-stone-weight">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Max Heap</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p66"></td><td>63</td><td><a class="problem-link" href="https://leetcode.com/problems/k-closest-points-to-origin/">K Closest Points to Origin</a><a class="nc-link" href="https://neetcode.io/problems/k-closest-points-to-origin">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Max Heap K</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p67"></td><td>64</td><td><a class="problem-link" href="https://leetcode.com/problems/kth-largest-element-in-an-array/">Kth Largest Element in an Array</a><a class="nc-link" href="https://neetcode.io/problems/kth-largest-element-in-an-array">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Quick Select</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p68"></td><td>65</td><td><a class="problem-link" href="https://leetcode.com/problems/task-scheduler/">Task Scheduler</a><a class="nc-link" href="https://neetcode.io/problems/task-scheduling">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Heap + Queue</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p69"></td><td>66</td><td><a class="problem-link" href="https://leetcode.com/problems/design-twitter/">Design Twitter</a><a class="nc-link" href="https://neetcode.io/problems/design-twitter-feed">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Heap + OOD</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p70"></td><td>67</td><td><a class="problem-link" href="https://leetcode.com/problems/find-median-from-data-stream/">Find Median from Data Stream</a><a class="nc-link" href="https://neetcode.io/problems/find-median-in-a-data-stream">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Two Heaps</span></td><td class="time-est">35m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 9. BACKTRACKING ==================== -->
+<div class="section" id="backtracking">
+  <div class="section-header"><span class="section-num">09</span><h2>Backtracking</h2></div>
+  <p class="section-desc">Build candidates incrementally and abandon ("backtrack") when a candidate can't lead to a valid solution. Used for subsets, permutations, combinations, constraint puzzles.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=REOH22Xwdkk"><span class="tag">Video</span> NeetCode — Backtracking explained</a></li>
+      <li><a href="https://www.geeksforgeeks.org/introduction-to-backtracking/"><span class="tag">Article</span> GeeksforGeeks — Backtracking Intro</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Backtracking#Applications"><span class="tag">Real-World</span> Sudoku solvers, regex engines, pathfinding</a></li>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/RecQueens.html"><span class="tag">Interactive</span> USFCA — N-Queens Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p71"></td><td>68</td><td><a class="problem-link" href="https://leetcode.com/problems/subsets/">Subsets</a><a class="nc-link" href="https://neetcode.io/problems/subsets">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Include/Exclude</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p72"></td><td>69</td><td><a class="problem-link" href="https://leetcode.com/problems/combination-sum/">Combination Sum</a><a class="nc-link" href="https://neetcode.io/problems/combination-sum">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Unbounded</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p73"></td><td>70</td><td><a class="problem-link" href="https://leetcode.com/problems/combination-sum-ii/">Combination Sum II</a><a class="nc-link" href="https://neetcode.io/problems/combination-sum-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Skip Dupes</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p74"></td><td>71</td><td><a class="problem-link" href="https://leetcode.com/problems/permutations/">Permutations</a><a class="nc-link" href="https://neetcode.io/problems/permutations">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Swap / Used</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p75"></td><td>72</td><td><a class="problem-link" href="https://leetcode.com/problems/subsets-ii/">Subsets II</a><a class="nc-link" href="https://neetcode.io/problems/subsets-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Sort + Skip</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p76"></td><td>73</td><td><a class="problem-link" href="https://leetcode.com/problems/word-search/">Word Search</a><a class="nc-link" href="https://neetcode.io/problems/search-for-word">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Grid DFS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p77"></td><td>74</td><td><a class="problem-link" href="https://leetcode.com/problems/palindrome-partitioning/">Palindrome Partitioning</a><a class="nc-link" href="https://neetcode.io/problems/palindrome-partitioning">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Partition</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p78"></td><td>75</td><td><a class="problem-link" href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/">Letter Combinations of a Phone Number</a><a class="nc-link" href="https://neetcode.io/problems/combination-target-sum">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Mapping</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p79"></td><td>76</td><td><a class="problem-link" href="https://leetcode.com/problems/n-queens/">N-Queens</a><a class="nc-link" href="https://neetcode.io/problems/n-queens">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Constraint BT</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 10. TRIES ==================== -->
+<div class="section" id="tries">
+  <div class="section-header"><span class="section-num">10</span><h2>Tries</h2></div>
+  <p class="section-desc">Prefix trees for efficient string storage and lookup. Each node represents a character. Used in autocomplete, spell checkers, and IP routing tables.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=oobqoCJlHA0"><span class="tag">Video</span> NeetCode — Trie Data Structure</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/trie"><span class="tag">Code</span> JS Algorithms — Trie Implementation</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/Trie.html"><span class="tag">Interactive</span> USFCA — Trie Visualization</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Trie#Applications"><span class="tag">Real-World</span> Autocomplete, dictionary, T9 keyboards, DNS lookup</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p61"></td><td>77</td><td><a class="problem-link" href="https://leetcode.com/problems/implement-trie-prefix-tree/">Implement Trie</a><a class="nc-link" href="https://neetcode.io/problems/implement-prefix-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Build Trie</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p62"></td><td>78</td><td><a class="problem-link" href="https://leetcode.com/problems/add-and-search-word-data-structure-design/">Design Add and Search Words</a><a class="nc-link" href="https://neetcode.io/problems/design-word-search-data-structure">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Trie + DFS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p63"></td><td>79</td><td><a class="problem-link" href="https://leetcode.com/problems/word-search-ii/">Word Search II</a><a class="nc-link" href="https://neetcode.io/problems/search-for-word-ii">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Trie + Backtrack</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 11. GRAPHS ==================== -->
+<div class="section" id="graphs">
+  <div class="section-header"><span class="section-num">11</span><h2>Graphs</h2></div>
+  <p class="section-desc">Nodes + edges. Represent relationships, networks, dependencies. Key algorithms: BFS, DFS, topological sort, Union-Find. Graphs are everywhere — social networks, maps, package dependencies.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=tWVWeAqZ0WU"><span class="tag">Video</span> freeCodeCamp — Graph Algorithms full course</a></li>
+      <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/graph"><span class="tag">Code</span> JS Algorithms — Graph class</a></li>
+      <li><a href="https://visualgo.net/en/dfsbfs"><span class="tag">Interactive</span> VisuAlgo — DFS/BFS Visualization</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)#Applications"><span class="tag">Real-World</span> Google Maps, npm dependencies, social networks</a></li>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/BFS.html"><span class="tag">Interactive</span> USFCA — BFS Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p80"></td><td>80</td><td><a class="problem-link" href="https://leetcode.com/problems/number-of-islands/">Number of Islands</a><a class="nc-link" href="https://neetcode.io/problems/count-number-of-islands">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Grid DFS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p81"></td><td>81</td><td><a class="problem-link" href="https://leetcode.com/problems/max-area-of-island/">Max Area of Island</a><a class="nc-link" href="https://neetcode.io/problems/max-area-of-island">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Grid DFS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p82"></td><td>82</td><td><a class="problem-link" href="https://leetcode.com/problems/clone-graph/">Clone Graph</a><a class="nc-link" href="https://neetcode.io/problems/clone-graph">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DFS + HashMap</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p83"></td><td>83</td><td><a class="problem-link" href="https://leetcode.com/problems/walls-and-gates/">Walls and Gates</a><a class="nc-link" href="https://neetcode.io/problems/islands-and-treasure">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Multi-source BFS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p84"></td><td>84</td><td><a class="problem-link" href="https://leetcode.com/problems/rotting-oranges/">Rotting Oranges</a><a class="nc-link" href="https://neetcode.io/problems/rotting-fruit">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Multi-source BFS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p85"></td><td>85</td><td><a class="problem-link" href="https://leetcode.com/problems/pacific-atlantic-water-flow/">Pacific Atlantic Water Flow</a><a class="nc-link" href="https://neetcode.io/problems/pacific-atlantic-water-flow">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Multi-DFS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p86"></td><td>86</td><td><a class="problem-link" href="https://leetcode.com/problems/surrounded-regions/">Surrounded Regions</a><a class="nc-link" href="https://neetcode.io/problems/surrounded-regions">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Border DFS</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p87"></td><td>87</td><td><a class="problem-link" href="https://leetcode.com/problems/course-schedule/">Course Schedule</a><a class="nc-link" href="https://neetcode.io/problems/course-schedule">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Topo Sort</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p88"></td><td>88</td><td><a class="problem-link" href="https://leetcode.com/problems/course-schedule-ii/">Course Schedule II</a><a class="nc-link" href="https://neetcode.io/problems/course-schedule-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Topo Sort</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p89"></td><td>89</td><td><a class="problem-link" href="https://leetcode.com/problems/graph-valid-tree/">Graph Valid Tree</a><a class="nc-link" href="https://neetcode.io/problems/valid-tree">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Union-Find</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p90"></td><td>90</td><td><a class="problem-link" href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/">Connected Components</a><a class="nc-link" href="https://neetcode.io/problems/count-connected-components">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Union-Find</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p91"></td><td>91</td><td><a class="problem-link" href="https://leetcode.com/problems/redundant-connection/">Redundant Connection</a><a class="nc-link" href="https://neetcode.io/problems/redundant-connection">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Union-Find</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p92"></td><td>92</td><td><a class="problem-link" href="https://leetcode.com/problems/word-ladder/">Word Ladder</a><a class="nc-link" href="https://neetcode.io/problems/word-ladder">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">BFS Shortest</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 12. ADVANCED GRAPHS ==================== -->
+<div class="section" id="advgraphs">
+  <div class="section-header"><span class="section-num">12</span><h2>Advanced Graphs</h2></div>
+  <p class="section-desc">Dijkstra's, Prim's MST, Bellman-Ford, topological ordering on weighted/directed graphs. These appear in harder interviews and system design.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=EFg3u_E6eHU"><span class="tag">Video</span> NeetCode — Dijkstra's Algorithm</a></li>
+      <li><a href="https://visualgo.net/en/sssp"><span class="tag">Interactive</span> VisuAlgo — Shortest Path Algorithms</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Applications"><span class="tag">Real-World</span> GPS navigation, network routing (OSPF)</a></li>
+      <li><a href="https://visualgo.net/en/mst"><span class="tag">Interactive</span> VisuAlgo — MST (Prim's/Kruskal's)</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p93"></td><td>93</td><td><a class="problem-link" href="https://leetcode.com/problems/reconstruct-itinerary/">Reconstruct Itinerary</a><a class="nc-link" href="https://neetcode.io/problems/reconstruct-flight-path">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Euler Path</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p94"></td><td>94</td><td><a class="problem-link" href="https://leetcode.com/problems/min-cost-to-connect-all-points/">Min Cost to Connect All Points</a><a class="nc-link" href="https://neetcode.io/problems/min-cost-to-connect-points">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Prim's MST</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p95"></td><td>95</td><td><a class="problem-link" href="https://leetcode.com/problems/network-delay-time/">Network Delay Time</a><a class="nc-link" href="https://neetcode.io/problems/network-delay-time">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Dijkstra</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p96"></td><td>96</td><td><a class="problem-link" href="https://leetcode.com/problems/swim-in-rising-water/">Swim in Rising Water</a><a class="nc-link" href="https://neetcode.io/problems/swim-in-rising-water">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Dijkstra Grid</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p97"></td><td>97</td><td><a class="problem-link" href="https://leetcode.com/problems/alien-dictionary/">Alien Dictionary</a><a class="nc-link" href="https://neetcode.io/problems/foreign-dictionary">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Topo Sort</span></td><td class="time-est">40m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p98"></td><td>98</td><td><a class="problem-link" href="https://leetcode.com/problems/cheapest-flights-within-k-stops/">Cheapest Flights Within K Stops</a><a class="nc-link" href="https://neetcode.io/problems/cheapest-flight-path">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Bellman-Ford</span></td><td class="time-est">30m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 13. 1-D DP ==================== -->
+<div class="section" id="dp1d">
+  <div class="section-header"><span class="section-num">13</span><h2>1-D Dynamic Programming</h2></div>
+  <p class="section-desc">Break problems into overlapping subproblems. Store results to avoid recomputation. Start with recursion + memoization, then convert to tabulation. The hardest pattern to master — practice is key.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=oBt53YbR9Kk"><span class="tag">Video</span> freeCodeCamp — Dynamic Programming (5hr course)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=73r3KWiEvyk"><span class="tag">Video</span> NeetCode — DP for Beginners</a></li>
+      <li><a href="https://javascript.info/recursion"><span class="tag">Article</span> javascript.info — Recursion (foundation for DP)</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Dynamic_programming#Applications"><span class="tag">Real-World</span> Spell check (edit distance), text diff, resource allocation</a></li>
+      <li><a href="https://www.cs.usfca.edu/~galles/visualization/DPFib.html"><span class="tag">Interactive</span> USFCA — DP Fibonacci Visualization</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p99"></td><td>99</td><td><a class="problem-link" href="https://leetcode.com/problems/climbing-stairs/">Climbing Stairs</a><a class="nc-link" href="https://neetcode.io/problems/climbing-stairs">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Fibonacci</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p100"></td><td>100</td><td><a class="problem-link" href="https://leetcode.com/problems/min-cost-climbing-stairs/">Min Cost Climbing Stairs</a><a class="nc-link" href="https://neetcode.io/problems/min-cost-climbing-stairs">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Min DP</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p101"></td><td>101</td><td><a class="problem-link" href="https://leetcode.com/problems/house-robber/">House Robber</a><a class="nc-link" href="https://neetcode.io/problems/house-robber">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Skip/Take</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p102"></td><td>102</td><td><a class="problem-link" href="https://leetcode.com/problems/house-robber-ii/">House Robber II</a><a class="nc-link" href="https://neetcode.io/problems/house-robber-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Circular DP</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p103"></td><td>103</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-palindromic-substring/">Longest Palindromic Substring</a><a class="nc-link" href="https://neetcode.io/problems/longest-palindromic-substring">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Expand Center</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p104"></td><td>104</td><td><a class="problem-link" href="https://leetcode.com/problems/palindromic-substrings/">Palindromic Substrings</a><a class="nc-link" href="https://neetcode.io/problems/palindromic-substrings">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Expand Center</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p105"></td><td>105</td><td><a class="problem-link" href="https://leetcode.com/problems/decode-ways/">Decode Ways</a><a class="nc-link" href="https://neetcode.io/problems/decode-ways">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Decision DP</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p106"></td><td>106</td><td><a class="problem-link" href="https://leetcode.com/problems/coin-change/">Coin Change</a><a class="nc-link" href="https://neetcode.io/problems/coin-change">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Unbounded Knapsack</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p107"></td><td>107</td><td><a class="problem-link" href="https://leetcode.com/problems/maximum-product-subarray/">Maximum Product Subarray</a><a class="nc-link" href="https://neetcode.io/problems/maximum-product-subarray">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Track Min/Max</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p108"></td><td>108</td><td><a class="problem-link" href="https://leetcode.com/problems/word-break/">Word Break</a><a class="nc-link" href="https://neetcode.io/problems/word-break">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DP + Set</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p109"></td><td>109</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-increasing-subsequence/">Longest Increasing Subsequence</a><a class="nc-link" href="https://neetcode.io/problems/longest-increasing-subsequence">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">DP / BS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p110"></td><td>110</td><td><a class="problem-link" href="https://leetcode.com/problems/partition-equal-subset-sum/">Partition Equal Subset Sum</a><a class="nc-link" href="https://neetcode.io/problems/partition-equal-subset-sum">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">0/1 Knapsack</span></td><td class="time-est">25m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 14. 2-D DP ==================== -->
+<div class="section" id="dp2d">
+  <div class="section-header"><span class="section-num">14</span><h2>2-D Dynamic Programming</h2></div>
+  <p class="section-desc">When the state depends on two variables. Grid paths, string matching, and interleaving problems. Build a 2D table where dp[i][j] encodes the answer for subproblem (i,j).</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=oBt53YbR9Kk"><span class="tag">Video</span> freeCodeCamp — Dynamic Programming (covers 2D grids)</a></li>
+      <li><a href="https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/"><span class="tag">Article</span> GeeksforGeeks — LCS (classic 2D DP)</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Diff"><span class="tag">Real-World</span> git diff uses LCS (2D DP) under the hood</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Edit_distance#Applications"><span class="tag">Real-World</span> Spell checkers, DNA alignment (edit distance)</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p111"></td><td>111</td><td><a class="problem-link" href="https://leetcode.com/problems/unique-paths/">Unique Paths</a><a class="nc-link" href="https://neetcode.io/problems/count-paths">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Grid DP</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p112"></td><td>112</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-common-subsequence/">Longest Common Subsequence</a><a class="nc-link" href="https://neetcode.io/problems/longest-common-subsequence">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">LCS</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p113"></td><td>113</td><td><a class="problem-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">Buy & Sell Stock with Cooldown</a><a class="nc-link" href="https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">State Machine</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p114"></td><td>114</td><td><a class="problem-link" href="https://leetcode.com/problems/coin-change-ii/">Coin Change II</a><a class="nc-link" href="https://neetcode.io/problems/coin-change-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Unbounded 2D</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p115"></td><td>115</td><td><a class="problem-link" href="https://leetcode.com/problems/target-sum/">Target Sum</a><a class="nc-link" href="https://neetcode.io/problems/target-sum">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">0/1 Knapsack</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p116"></td><td>116</td><td><a class="problem-link" href="https://leetcode.com/problems/interleaving-string/">Interleaving String</a><a class="nc-link" href="https://neetcode.io/problems/interleaving-string">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">2D Match</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p117"></td><td>117</td><td><a class="problem-link" href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/">Longest Increasing Path in Matrix</a><a class="nc-link" href="https://neetcode.io/problems/longest-increasing-path-in-matrix">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">DFS + Memo</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p118"></td><td>118</td><td><a class="problem-link" href="https://leetcode.com/problems/distinct-subsequences/">Distinct Subsequences</a><a class="nc-link" href="https://neetcode.io/problems/count-subsequences">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">2D Count</span></td><td class="time-est">35m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p119"></td><td>119</td><td><a class="problem-link" href="https://leetcode.com/problems/edit-distance/">Edit Distance</a><a class="nc-link" href="https://neetcode.io/problems/edit-distance">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Classic 2D</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p120"></td><td>120</td><td><a class="problem-link" href="https://leetcode.com/problems/burst-balloons/">Burst Balloons</a><a class="nc-link" href="https://neetcode.io/problems/burst-balloons">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Interval DP</span></td><td class="time-est">40m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p121"></td><td>121</td><td><a class="problem-link" href="https://leetcode.com/problems/regular-expression-matching/">Regular Expression Matching</a><a class="nc-link" href="https://neetcode.io/problems/regular-expression-matching">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">2D Match</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 15. GREEDY ==================== -->
+<div class="section" id="greedy">
+  <div class="section-header"><span class="section-num">15</span><h2>Greedy</h2></div>
+  <p class="section-desc">Make the locally optimal choice at each step. Works when local optima lead to global optimum. Harder to prove correct than DP, but simpler to implement when valid.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=bC7o8P_Ste4"><span class="tag">Video</span> NeetCode — Greedy Algorithm Intro</a></li>
+      <li><a href="https://www.geeksforgeeks.org/greedy-algorithms/"><span class="tag">Article</span> GeeksforGeeks — Greedy Algorithms</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Greedy_algorithm#Applications"><span class="tag">Real-World</span> Huffman coding (compression), job scheduling, coin making</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p122"></td><td>122</td><td><a class="problem-link" href="https://leetcode.com/problems/maximum-subarray/">Maximum Subarray</a><a class="nc-link" href="https://neetcode.io/problems/maximum-subarray">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Kadane's</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p123"></td><td>123</td><td><a class="problem-link" href="https://leetcode.com/problems/jump-game/">Jump Game</a><a class="nc-link" href="https://neetcode.io/problems/jump-game">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Greedy Reach</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p124"></td><td>124</td><td><a class="problem-link" href="https://leetcode.com/problems/jump-game-ii/">Jump Game II</a><a class="nc-link" href="https://neetcode.io/problems/jump-game-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">BFS / Greedy</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p125"></td><td>125</td><td><a class="problem-link" href="https://leetcode.com/problems/gas-station/">Gas Station</a><a class="nc-link" href="https://neetcode.io/problems/gas-station">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Greedy Reset</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p126"></td><td>126</td><td><a class="problem-link" href="https://leetcode.com/problems/hand-of-straights/">Hand of Straights</a><a class="nc-link" href="https://neetcode.io/problems/hand-of-straights">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Greedy + Map</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p127"></td><td>127</td><td><a class="problem-link" href="https://leetcode.com/problems/merge-triplets-to-form-target-triplet/">Merge Triplets</a><a class="nc-link" href="https://neetcode.io/problems/merge-triplets-to-form-target">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Filter + Check</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p128"></td><td>128</td><td><a class="problem-link" href="https://leetcode.com/problems/partition-labels/">Partition Labels</a><a class="nc-link" href="https://neetcode.io/problems/partition-labels">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Last Occurrence</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p129"></td><td>129</td><td><a class="problem-link" href="https://leetcode.com/problems/valid-parenthesis-string/">Valid Parenthesis String</a><a class="nc-link" href="https://neetcode.io/problems/valid-parenthesis-string">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Range Track</span></td><td class="time-est">25m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 16. INTERVALS ==================== -->
+<div class="section" id="intervals">
+  <div class="section-header"><span class="section-num">16</span><h2>Intervals</h2></div>
+  <p class="section-desc">Sort by start time, then process overlaps. Common in scheduling, calendar apps, and event handling. Key: determine if two intervals overlap.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://www.youtube.com/watch?v=WH5GRe1jE7M"><span class="tag">Video</span> NeetCode — Merge Intervals Pattern</a></li>
+      <li><a href="https://www.geeksforgeeks.org/merging-intervals/"><span class="tag">Article</span> GeeksforGeeks — Interval Merging</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Interval_scheduling"><span class="tag">Real-World</span> Calendar apps, meeting room booking, CPU scheduling</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p133"></td><td>130</td><td><a class="problem-link" href="https://leetcode.com/problems/meeting-rooms/">Meeting Rooms</a><a class="nc-link" href="https://neetcode.io/problems/meeting-schedule">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Sort + Check</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p130"></td><td>131</td><td><a class="problem-link" href="https://leetcode.com/problems/insert-interval/">Insert Interval</a><a class="nc-link" href="https://neetcode.io/problems/insert-new-interval">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Merge Logic</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p131"></td><td>132</td><td><a class="problem-link" href="https://leetcode.com/problems/merge-intervals/">Merge Intervals</a><a class="nc-link" href="https://neetcode.io/problems/merge-intervals">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Sort + Merge</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p132"></td><td>133</td><td><a class="problem-link" href="https://leetcode.com/problems/non-overlapping-intervals/">Non-overlapping Intervals</a><a class="nc-link" href="https://neetcode.io/problems/non-overlapping-intervals">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Greedy Remove</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p134"></td><td>134</td><td><a class="problem-link" href="https://leetcode.com/problems/meeting-rooms-ii/">Meeting Rooms II</a><a class="nc-link" href="https://neetcode.io/problems/meeting-schedule-ii">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Sweep Line</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p135"></td><td>135</td><td><a class="problem-link" href="https://leetcode.com/problems/minimum-interval-to-include-each-query/">Min Interval to Include Each Query</a><a class="nc-link" href="https://neetcode.io/problems/minimum-interval-including-each-query">NeetCode ↗</a></td><td><span class="diff hard">Hard</span></td><td><span class="pattern-tag">Sweep + Heap</span></td><td class="time-est">40m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 17. MATH & GEOMETRY ==================== -->
+<div class="section" id="math">
+  <div class="section-header"><span class="section-num">17</span><h2>Math & Geometry</h2></div>
+  <p class="section-desc">Matrix manipulation, modular arithmetic, and number theory. These are pattern-recognition problems — spot the math trick and the code is usually short.</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math"><span class="tag">MDN</span> Math object — MDN Docs</a></li>
+      <li><a href="https://www.geeksforgeeks.org/mathematical-algorithms/"><span class="tag">Article</span> GeeksforGeeks — Mathematical Algorithms</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Modular_arithmetic#Applications"><span class="tag">Real-World</span> Cryptography, hash functions, clock arithmetic</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p139"></td><td>136</td><td><a class="problem-link" href="https://leetcode.com/problems/happy-number/">Happy Number</a><a class="nc-link" href="https://neetcode.io/problems/non-cyclical-number">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Cycle Detection</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p140"></td><td>137</td><td><a class="problem-link" href="https://leetcode.com/problems/plus-one/">Plus One</a><a class="nc-link" href="https://neetcode.io/problems/plus-one">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Carry</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p136"></td><td>138</td><td><a class="problem-link" href="https://leetcode.com/problems/rotate-image/">Rotate Image</a><a class="nc-link" href="https://neetcode.io/problems/rotate-matrix">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Matrix Rotate</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p137"></td><td>139</td><td><a class="problem-link" href="https://leetcode.com/problems/spiral-matrix/">Spiral Matrix</a><a class="nc-link" href="https://neetcode.io/problems/spiral-matrix">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Boundary Walk</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p138"></td><td>140</td><td><a class="problem-link" href="https://leetcode.com/problems/set-matrix-zeroes/">Set Matrix Zeroes</a><a class="nc-link" href="https://neetcode.io/problems/set-zeroes-in-matrix">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">In-place Mark</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p141"></td><td>141</td><td><a class="problem-link" href="https://leetcode.com/problems/powx-n/">Pow(x, n)</a><a class="nc-link" href="https://neetcode.io/problems/pow-x-n">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Fast Power</span></td><td class="time-est">20m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p142"></td><td>142</td><td><a class="problem-link" href="https://leetcode.com/problems/multiply-strings/">Multiply Strings</a><a class="nc-link" href="https://neetcode.io/problems/multiply-strings">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Grade School</span></td><td class="time-est">30m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p143"></td><td>143</td><td><a class="problem-link" href="https://leetcode.com/problems/detect-squares/">Detect Squares</a><a class="nc-link" href="https://neetcode.io/problems/count-squares">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Hash + Geometry</span></td><td class="time-est">30m</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ==================== 18. BIT MANIPULATION ==================== -->
+<div class="section" id="bits">
+  <div class="section-header"><span class="section-num">18</span><h2>Bit Manipulation</h2></div>
+  <p class="section-desc">Work directly with binary representations using AND, OR, XOR, shifts. Often gives O(1) space solutions. Key trick: XOR cancels duplicates (a ^ a = 0).</p>
+  <div class="resources-row">
+    <div class="resource-card learn"><h3>📘 Learn (JS)</h3><ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators"><span class="tag">MDN</span> Bitwise Operators — MDN Docs</a></li>
+      <li><a href="https://www.youtube.com/watch?v=NLKQEOgBAnw"><span class="tag">Video</span> NeetCode — Bit Manipulation for Beginners</a></li>
+      <li><a href="https://www.geeksforgeeks.org/bits-manipulation-important-tactics/"><span class="tag">Article</span> GeeksforGeeks — Bit Manipulation Tactics</a></li>
+    </ul></div>
+    <div class="resource-card realworld"><h3>🌍 Real-World</h3><ul>
+      <li><a href="https://en.wikipedia.org/wiki/Bit_manipulation#Applications"><span class="tag">Real-World</span> Permissions (Unix chmod), feature flags, graphics</a></li>
+    </ul></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th class="check-cell">✓</th><th>#</th><th>Problem</th><th>Difficulty</th><th>Pattern</th><th>Est. Time</th></tr></thead><tbody>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p144"></td><td>144</td><td><a class="problem-link" href="https://leetcode.com/problems/single-number/">Single Number</a><a class="nc-link" href="https://neetcode.io/problems/single-number">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">XOR</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p145"></td><td>145</td><td><a class="problem-link" href="https://leetcode.com/problems/number-of-1-bits/">Number of 1 Bits</a><a class="nc-link" href="https://neetcode.io/problems/number-of-one-bits">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Count Bits</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p146"></td><td>146</td><td><a class="problem-link" href="https://leetcode.com/problems/counting-bits/">Counting Bits</a><a class="nc-link" href="https://neetcode.io/problems/counting-bits">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">DP + Bits</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p147"></td><td>147</td><td><a class="problem-link" href="https://leetcode.com/problems/reverse-bits/">Reverse Bits</a><a class="nc-link" href="https://neetcode.io/problems/reverse-bits">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">Shift + Build</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p148"></td><td>148</td><td><a class="problem-link" href="https://leetcode.com/problems/missing-number/">Missing Number</a><a class="nc-link" href="https://neetcode.io/problems/missing-number">NeetCode ↗</a></td><td><span class="diff easy">Easy</span></td><td><span class="pattern-tag">XOR / Sum</span></td><td class="time-est">15m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p149"></td><td>149</td><td><a class="problem-link" href="https://leetcode.com/problems/sum-of-two-integers/">Sum of Two Integers</a><a class="nc-link" href="https://neetcode.io/problems/sum-of-two-integers">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Bit Add</span></td><td class="time-est">25m</td></tr>
+    <tr><td class="check-cell"><input type="checkbox" data-id="p150"></td><td>150</td><td><a class="problem-link" href="https://leetcode.com/problems/reverse-integer/">Reverse Integer</a><a class="nc-link" href="https://neetcode.io/problems/reverse-integer">NeetCode ↗</a></td><td><span class="diff medium">Medium</span></td><td><span class="pattern-tag">Mod + Build</span></td><td class="time-est">20m</td></tr>
+  </tbody></table></div>
+</div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  Built for your learning journey. Data sourced from <a href="https://neetcode.io/roadmap">NeetCode Roadmap</a>. Problems link to LeetCode. Good luck!
+</div>
+
+<script>
+// Progress tracking with in-memory storage (no localStorage)
+const state = {};
+
+function updateProgress() {
+  const boxes = document.querySelectorAll('input[type="checkbox"]');
+  const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+  const total = boxes.length;
+  document.getElementById('progressText').textContent = checked + ' / ' + total + ' completed';
+  document.getElementById('progressFill').style.width = (checked / total * 100) + '%';
+}
+
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', updateProgress);
+});
+
+// Smooth scroll for nav
+document.querySelectorAll('.toc a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Intersection observer for fade-in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.animationDelay = '0s'; e.target.style.animationPlayState = 'running'; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.section').forEach(s => { s.style.animationPlayState = 'paused'; obs.observe(s); });
+</script>
+</body>
+</html>
