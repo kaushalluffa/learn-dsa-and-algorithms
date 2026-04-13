@@ -14,7 +14,7 @@ A single-page interactive learning dashboard for mastering Data Structures and A
 
 ## 🚀 Usage
 
-Just open this [URL](https://kaushalluffa.github.io/learn-dsa-and-algorithms/) or clone the repo to run on ur local in any browser. No build step, no dependencies, no server required. On your local just open the index.html with live server extension in vscode or open with browser.
+Just clone the repo to run on ur local in any browser. No build step, no dependencies, no server required. On your local just open the index.html with live server extension in vscode or open with browser.
 
 ## 📸 Preview
 
